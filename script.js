@@ -181,7 +181,7 @@ function weather() {
         
 
         date0.textContent=monthday+"/"+todayday+"/"+yeartoday;
-        weatherIcon0.setAttribute("src", "https://openweathermap.org/img/wn/"+icon0+"@2x.png")
+        weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
         
         cityname.textContent=name0
         cityTemp.textContent="Temp: "+temp0+" F"
@@ -204,7 +204,7 @@ function weather() {
 
 function forecast5() {
 
-    var reurl3="https://api.openweathermap.org/data/2.5/forecast/daily?lat="+lat0+"&lon="+lon0+"&cnt=5&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    var reurl3="api.openweathermap.org/data/2.5/forecast/daily?lat="+lat0+"&lon="+lon0+"&cnt=5&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
 
     fetch(reurl3)
     .then(function (response1) {
