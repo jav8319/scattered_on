@@ -204,7 +204,10 @@ function weather() {
 
 function forecast5() {
 
-    var reurl3="https://api.openweathermap.org/data/2.5/forecast/daily?lat="+lat0+"&lon="+lon0+"&cnt=5&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    var reurl3="api.openweathermap.org/data/2.5/forecast/daily?lat="+lat0+"&lon="+lon0+"&cnt=5&appid=f9ec59044da63b2faaf8cef0a819eae9"
+
+    console.log(lat0)
+    console.log(lon0)
 
     fetch(reurl3)
     .then(function (response1) {
