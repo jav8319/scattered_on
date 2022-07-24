@@ -93,12 +93,13 @@ function renderweather(){
 
     var element0=document.getElementById("but0")
 
-    if ((lon0!==null)&&(lat0!==null)) {
-        lon0 = element0.getAttribute("data-lon");
-        lat0= element0.getAttribute("data-lat"); 
-    } else {
+    if ((lon0=" ")&&(lat0=" ")) {
         lon0=43.6534817;
         lat0=-79.3839347
+    } else {
+        lon0 = element0.getAttribute("data-lon");
+        lat0= element0.getAttribute("data-lat"); 
+   
     }
 
 
