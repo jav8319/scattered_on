@@ -32,42 +32,22 @@ var fday2w=document.querySelector("#day2w")
 var fday3w=document.querySelector("#day3w")
 var fday4w=document.querySelector("#day4w")
 
-
-
-
-
-
-
-
 var hist=[];
 var histlon=[];
 var histlat=[];
-// var hislat=[]
-// var hislon=[]
 
 function render() {
 
     
     List.innerHTML="";
 
-    // if (hist.length>4) {
-        
-    //     var sel0=(hist.length-1)
-
-    //     var pickbutton=document.querySelector("#but"+sel0)
-    //     pickbutton.remove();
-    // }
-
     for (var i=0; i<4;i++) {
         var cityText = hist[i];
         var hlon=histlon[i]
         var hlat=histlat[i]
-        // var citylat=
     
         var li=document.createElement("li");
         li.setAttribute("class","list-group-item");
-
-
 
         var button=document.createElement('button');
         button.textContent=cityText;
@@ -76,16 +56,9 @@ function render() {
         button.setAttribute("class","container-fluid mx-0 px-0");
         button.setAttribute("id","but"+i);
       
-
-
         li.appendChild(button);
         List.appendChild(li)
-
-
     }
-
-    
-    
 }
 
 function init() {
@@ -98,6 +71,7 @@ function init() {
     
     if(storedHist!==null){
         hist=storedHist;
+
     }
 
     if(storehlat!==null){
@@ -128,21 +102,9 @@ function renderweather(){
 
     weather2()
     forecast52()
-
-
-
-
 }
 
-
-
-
-
 function storeHist0(){
-
-
-
-
 
     localStorage.setItem("cityhlat",JSON.stringify(histlat));
 
@@ -150,80 +112,46 @@ function storeHist0(){
 
     localStorage.setItem("cityhist",JSON.stringify(hist));
     
-
-    
 }
 
 formS.addEventListener("submit", function (event) {
     event.preventDefault();
 
     var inputText=search.value
-
-    
+ 
 
     if(inputText===" "){
         return;
     }
 
-    // if((JSON.stringify(hist)).includes(inputText)){
-    //     return;
-    // }
-
     getApi();
     
-    // if ((hist)).length<9) {
-    //     hist.push(inputText);
-    // } else {
-    //     hist.splice(0, 0, inputText);
-    // }
-    
-        
-    
-    
-    // storeHist0();
-    // render();
 })
 
 init();
 
-// Add click event to todoList element
+
 List.addEventListener("click", function(event) {
     var element = event.target;
   
-    // Checks if element is a button
+    
     if (element.matches("button") === true) {
-      // Get its data-index value and remove the todo element from the list
+     
       lon0 = element.getAttribute("data-lon");
      lat0= element.getAttribute("data-lat");
-      
-
-
-
-
+     
       weather1()
       forecast51()
   
-      // Store updated todos in localStorage, re-render the list
- 
     }
 });
-
-
-
 
 var country0="";
 var lon0="";
 var lat0="";
 
-
-
-
 function getApi() {
-    
    
-
-
-  
   var requestUrl = "https://api.openweathermap.org/geo/1.0/direct?q="+search.value+"&limit=5&appid=f9ec59044da63b2faaf8cef0a819eae9";
 
   fetch(requestUrl)
@@ -235,20 +163,14 @@ function getApi() {
         for (var i = 0; i <data.length; i++) {
             
             country0=country0.concat((i+"."+data[i].country+"_"+data[i].state+"     "))
-        
-         
+                 
         }
-        
-        
+            
         var inputText0=search.value
 
-
-
-      
               
         var choice=window.prompt("please enter an option(number)    "+country0)
         
-       
    
         if(data[choice]){
             lon0=data[choice].lon
@@ -264,56 +186,29 @@ function getApi() {
             return
         }
 
-        
-        
-
-
-        
-
-      
+             
     });
     
-
-
-
     return;
 
 }
 
-
-
-
-
-
 function weather() {
 
-    console.log(lon0)
-    console.log(lat0)
-    
-
     var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-
 
     fetch(reurl2)
     .then(function (response0) {
       return response0.json();
     })
     .then(function (data0){
-        
-       
-            
+                  
         var humidity0=data0.main.humidity
         var temp0=data0.main.temp
         var name0=data0.name
         var icon0=data0.weather[0].icon
         var date00= new Date();
-
-
-        
-       
-
-
-        
+     
 
         date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
         weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
@@ -323,27 +218,16 @@ function weather() {
         cityhumidity.textContent="Humidity: "+humidity0+" %"
 
 
-
-        // country0=[];
        forecast5();
 
                   
-    }) 
-    
-    
-    
-   
+    })   
     
 }
 
 function forecast5() {
 
-
-    console.log(lon0)
-    console.log(lat0)
     var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-
-  
 
     fetch(reurl3)
     .then(function (response1) {
@@ -425,23 +309,8 @@ function forecast5() {
         
         storeHist0();
         render();
-
-
-
-
-
- 
-
-
-        
-
-       
-        
-        
-                  
+                
     }) 
-
-    
 
 }
 
@@ -526,30 +395,8 @@ function forecast51() {
         fday4wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day4wi+"@2x.png")
         fday4h.textContent="Humidity: "+day4h+" %"
         fday4w.textContent="Wind speed: "+day4w+"mph"
-
-
-
-        
-
-        
-     
-
-
-
-
-
- 
-
-
-        
-
-       
-        
-        
-                  
+                
     }) 
-
-    
 
 }
 
@@ -568,20 +415,13 @@ function weather1() {
     })
     .then(function (data0){
         
-       
             
         var humidity0=data0.main.humidity
         var temp0=data0.main.temp
         var name0=data0.name
         var icon0=data0.weather[0].icon
         var date00= new Date();
-
-
-        
        
-
-
-        
 
         date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
         weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
@@ -590,26 +430,21 @@ function weather1() {
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
 
-
-
-        // country0=[];
-    
-
-                  
+                 
     }) 
-    
-    
-    
-   
-    
+     
 }
 
 function forecast52() {
 
 
-    console.log(lon0)
-    console.log(lat0)
-    var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+
+    if (lat0 && lon0) {
+        var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    } else {
+        var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat=43.6534817&lon=-79.3839347&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    }
+    
 
   
 
@@ -686,39 +521,19 @@ function forecast52() {
         fday4h.textContent="Humidity: "+day4h+" %"
         fday4w.textContent="Wind speed: "+day4w+"mph"
 
-
-
-        
-
-        
-     
-
-
-
-
-
- 
-
-
-        
-
-       
-        
-        
-                  
+               
     }) 
-
-    
-
 }
 
 function weather2() {
 
-    console.log(lon0)
-    console.log(lat0)
-    
 
-    var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    if (lat0 && lon0) {
+         var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    } else {
+        var reurl2="https://api.openweathermap.org/data/2.5/weather?lat=43.6534817&lon=-79.3839347&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+    }
+   
 
 
     fetch(reurl2)
@@ -734,12 +549,6 @@ function weather2() {
         var name0=data0.name
         var icon0=data0.weather[0].icon
         var date00= new Date();
-
-
-        
-       
-
-
         
 
         date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
@@ -749,16 +558,6 @@ function weather2() {
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
 
-
-
-        // country0=[];
-    
-
-                  
     }) 
-    
-    
-    
-   
     
 }
