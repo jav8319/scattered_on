@@ -96,8 +96,6 @@ function renderweather(){
     lon0 = element0.getAttribute("data-lon");
     lat0= element0.getAttribute("data-lat"); 
    
-
-
     weather2()
     forecast52()
 }
@@ -117,7 +115,6 @@ formS.addEventListener("submit", function (event) {
 
     var inputText=search.value
  
-
     if(inputText===" "){
         return;
     }
@@ -159,14 +156,12 @@ function getApi() {
     .then(function (data) {
        
         for (var i = 0; i <data.length; i++) {
-            
-            country0=country0.concat((i+"."+data[i].country+"_"+data[i].state+"     "))
+        country0=country0.concat((i+"."+data[i].country+"_"+data[i].state+"     "))
                  
         }
             
         var inputText0=search.value
-
-              
+   
         var choice=window.prompt("please enter an option(number)    "+country0)
         
    
@@ -208,9 +203,9 @@ function weather() {
         var date00= new Date();
      
 
-        date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
+        date0.textContent=(new Intl.DateTimeFormat("en" , {
+        formatMatcher:"best fit", day:'2-digit', month:'2-digit', year:'numeric'}).format(date00));
         weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
-        
         cityname.textContent=name0
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
@@ -234,53 +229,59 @@ function forecast5() {
     .then(function (data1){
         
         var day0=data1.list[3].dt_txt
+        var timeday0 = day0.split('-')
+        var timeday00 =timeday0[2].split(' ')
         var day0t=data1.list[3].main.temp
         var day0h=data1.list[3].main.humidity
         var day0w=data1.list[3].wind.speed
         var day0wi=data1.list[3].weather[0].icon
-
-        
-        fday0.textContent=day0
-        
+    
+        fday0.textContent=timeday0[1]+"/"+timeday00[0]+"/"+timeday0[0];
         fday0t.textContent="Temp: "+day0t+" F"
         fday0wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day0wi+"@2x.png")
         fday0h.textContent="Humidity: "+day0h+" %"
         fday0w.textContent="Wind speed: "+day0w+"mph"
 
         var day1=data1.list[10].dt_txt
+        var timeday1 = day1.split('-')
+        var timeday11 =timeday1[2].split(' ')
         var day1t=data1.list[10].main.temp
         var day1h=data1.list[10].main.humidity
         var day1w=data1.list[10].wind.speed
         var day1wi=data1.list[10].weather[0].icon
 
         
-        fday1.textContent=day1
+        fday1.textContent=timeday1[1]+"/"+timeday11[0]+"/"+timeday1[0];
         fday1t.textContent="Temp: "+day1t+" F"
         fday1wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day1wi+"@2x.png")
         fday1h.textContent="Humidity: "+day1h+" %"
         fday1w.textContent="Wind speed: "+day1w+"mph"
 
         var day2=data1.list[18].dt_txt
+        var timeday2 = day2.split('-')
+        var timeday22 =timeday2[2].split(' ')
         var day2t=data1.list[18].main.temp
         var day2h=data1.list[18].main.humidity
         var day2w=data1.list[18].wind.speed
         var day2wi=data1.list[18].weather[0].icon
 
         
-        fday2.textContent=day2
+        fday2.textContent=timeday2[1]+"/"+timeday22[0]+"/"+timeday2[0];
         fday2t.textContent="Temp: "+day2t+" F"
         fday2wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day2wi+"@2x.png")
         fday2h.textContent="Humidity: "+day2h+" %"
         fday2w.textContent="Wind speed: "+day2w+"mph"
 
         var day3=data1.list[26].dt_txt
+        var timeday3 = day3.split('-')
+        var timeday33 =timeday3[2].split(' ')
         var day3t=data1.list[26].main.temp
         var day3h=data1.list[26].main.humidity
         var day3w=data1.list[26].wind.speed
         var day3wi=data1.list[26].weather[0].icon
 
         
-        fday3.textContent=day3
+        fday3.textContent=timeday3[1]+"/"+timeday33[0]+"/"+timeday3[0];
         fday3t.textContent="Temp: "+day3t+" F"
         fday3wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day3wi+"@2x.png")
         fday3h.textContent="Humidity: "+day3h+" %"
@@ -288,18 +289,19 @@ function forecast5() {
 
 
         var day4=data1.list[34].dt_txt
+        var timeday4 = day4.split('-')
+        var timeday44 =timeday4[2].split(' ')
         var day4t=data1.list[34].main.temp
         var day4h=data1.list[34].main.humidity
         var day4w=data1.list[34].wind.speed
         var day4wi=data1.list[34].weather[0].icon
 
         
-        fday4.textContent=day4
+        fday4.textContent=timeday4[1]+"/"+timeday44[0]+"/"+timeday4[0];
         fday4t.textContent="Temp: "+day4t+" F"
         fday4wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day4wi+"@2x.png")
         fday4h.textContent="Humidity: "+day4h+" %"
         fday4w.textContent="Wind speed: "+day4w+"mph"
-
 
 
         country0=[];
@@ -314,9 +316,6 @@ function forecast5() {
 
 function forecast51() {
 
-
-    console.log(lon0)
-    console.log(lat0)
     var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
 
   
@@ -328,53 +327,59 @@ function forecast51() {
     .then(function (data1){
         
         var day0=data1.list[3].dt_txt
+        var timeday0 = day0.split('-')
+        var timeday00 =timeday0[2].split(' ')
         var day0t=data1.list[3].main.temp
         var day0h=data1.list[3].main.humidity
         var day0w=data1.list[3].wind.speed
         var day0wi=data1.list[3].weather[0].icon
 
-        
-        fday0.textContent=day0
-        
+        fday0.textContent=timeday0[1]+"/"+timeday00[0]+"/"+timeday0[0]; 
         fday0t.textContent="Temp: "+day0t+" F"
         fday0wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day0wi+"@2x.png")
         fday0h.textContent="Humidity: "+day0h+" %"
         fday0w.textContent="Wind speed: "+day0w+"mph"
 
         var day1=data1.list[10].dt_txt
+        var timeday1 = day1.split('-')
+        var timeday11 =timeday1[2].split(' ')
         var day1t=data1.list[10].main.temp
         var day1h=data1.list[10].main.humidity
         var day1w=data1.list[10].wind.speed
         var day1wi=data1.list[10].weather[0].icon
 
         
-        fday1.textContent=day1
+        fday1.textContent=timeday1[1]+"/"+timeday11[0]+"/"+timeday1[0];
         fday1t.textContent="Temp: "+day1t+" F"
         fday1wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day1wi+"@2x.png")
         fday1h.textContent="Humidity: "+day1h+" %"
         fday1w.textContent="Wind speed: "+day1w+"mph"
 
         var day2=data1.list[18].dt_txt
+        var timeday2 = day2.split('-')
+        var timeday22 =timeday2[2].split(' ')
         var day2t=data1.list[18].main.temp
         var day2h=data1.list[18].main.humidity
         var day2w=data1.list[18].wind.speed
         var day2wi=data1.list[18].weather[0].icon
 
         
-        fday2.textContent=day2
+        fday2.textContent=timeday2[1]+"/"+timeday22[0]+"/"+timeday2[0];
         fday2t.textContent="Temp: "+day2t+" F"
         fday2wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day2wi+"@2x.png")
         fday2h.textContent="Humidity: "+day2h+" %"
         fday2w.textContent="Wind speed: "+day2w+"mph"
 
         var day3=data1.list[26].dt_txt
+        var timeday3 = day3.split('-')
+        var timeday33 =timeday3[2].split(' ')
         var day3t=data1.list[26].main.temp
         var day3h=data1.list[26].main.humidity
         var day3w=data1.list[26].wind.speed
         var day3wi=data1.list[26].weather[0].icon
 
         
-        fday3.textContent=day3
+        fday3.textContent=timeday3[1]+"/"+timeday33[0]+"/"+timeday3[0];
         fday3t.textContent="Temp: "+day3t+" F"
         fday3wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day3wi+"@2x.png")
         fday3h.textContent="Humidity: "+day3h+" %"
@@ -382,13 +387,15 @@ function forecast51() {
 
 
         var day4=data1.list[34].dt_txt
+        var timeday4 = day4.split('-')
+        var timeday44 =timeday4[2].split(' ')
         var day4t=data1.list[34].main.temp
         var day4h=data1.list[34].main.humidity
         var day4w=data1.list[34].wind.speed
         var day4wi=data1.list[34].weather[0].icon
 
         
-        fday4.textContent=day4
+        fday4.textContent=timeday4[1]+"/"+timeday44[0]+"/"+timeday4[0];
         fday4t.textContent="Temp: "+day4t+" F"
         fday4wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day4wi+"@2x.png")
         fday4h.textContent="Humidity: "+day4h+" %"
@@ -400,11 +407,7 @@ function forecast51() {
 
 function weather1() {
 
-    console.log(lon0)
-    console.log(lat0)
-    
-
-    var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
+     var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
 
 
     fetch(reurl2)
@@ -412,16 +415,15 @@ function weather1() {
       return response0.json();
     })
     .then(function (data0){
-        
-            
+          
         var humidity0=data0.main.humidity
         var temp0=data0.main.temp
         var name0=data0.name
         var icon0=data0.weather[0].icon
         var date00= new Date();
-       
 
-        date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
+        date0.textContent=(new Intl.DateTimeFormat("en" , {
+        formatMatcher:"best fit", day:'2-digit', month:'2-digit', year:'numeric'}).format(date00));
         weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
         
         cityname.textContent=name0
@@ -451,53 +453,57 @@ function forecast52() {
     .then(function (data1){
         
         var day0=data1.list[3].dt_txt
+        var timeday0 = day0.split('-')
+        var timeday00 =timeday0[2].split(' ')
         var day0t=data1.list[3].main.temp
         var day0h=data1.list[3].main.humidity
         var day0w=data1.list[3].wind.speed
         var day0wi=data1.list[3].weather[0].icon
-
-        
-        fday0.textContent=day0
-        
+      
+        fday0.textContent=timeday0[1]+"/"+timeday00[0]+"/"+timeday0[0];
         fday0t.textContent="Temp: "+day0t+" F"
         fday0wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day0wi+"@2x.png")
         fday0h.textContent="Humidity: "+day0h+" %"
         fday0w.textContent="Wind speed: "+day0w+"mph"
 
         var day1=data1.list[10].dt_txt
+        var timeday1 = day1.split('-')
+        var timeday11 =timeday1[2].split(' ')
         var day1t=data1.list[10].main.temp
         var day1h=data1.list[10].main.humidity
         var day1w=data1.list[10].wind.speed
         var day1wi=data1.list[10].weather[0].icon
-
         
-        fday1.textContent=day1
+        fday1.textContent=timeday1[1]+"/"+timeday11[0]+"/"+timeday1[0];
         fday1t.textContent="Temp: "+day1t+" F"
         fday1wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day1wi+"@2x.png")
         fday1h.textContent="Humidity: "+day1h+" %"
         fday1w.textContent="Wind speed: "+day1w+"mph"
 
         var day2=data1.list[18].dt_txt
+        var timeday2 = day2.split('-')
+        var timeday22 =timeday2[2].split(' ')
         var day2t=data1.list[18].main.temp
         var day2h=data1.list[18].main.humidity
         var day2w=data1.list[18].wind.speed
         var day2wi=data1.list[18].weather[0].icon
-
-        
-        fday2.textContent=day2
+       
+        fday2.textContent=timeday2[1]+"/"+timeday22[0]+"/"+timeday2[0];
         fday2t.textContent="Temp: "+day2t+" F"
         fday2wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day2wi+"@2x.png")
         fday2h.textContent="Humidity: "+day2h+" %"
         fday2w.textContent="Wind speed: "+day2w+"mph"
 
         var day3=data1.list[26].dt_txt
+        var timeday3 = day3.split('-')
+        var timeday33 =timeday3[2].split(' ')
         var day3t=data1.list[26].main.temp
         var day3h=data1.list[26].main.humidity
         var day3w=data1.list[26].wind.speed
         var day3wi=data1.list[26].weather[0].icon
 
         
-        fday3.textContent=day3
+        fday3.textContent=timeday3[1]+"/"+timeday33[0]+"/"+timeday3[0];
         fday3t.textContent="Temp: "+day3t+" F"
         fday3wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day3wi+"@2x.png")
         fday3h.textContent="Humidity: "+day3h+" %"
@@ -505,18 +511,19 @@ function forecast52() {
 
 
         var day4=data1.list[34].dt_txt
+        var timeday4 = day4.split('-')
+        var timeday44 =timeday4[2].split(' ')
         var day4t=data1.list[34].main.temp
         var day4h=data1.list[34].main.humidity
         var day4w=data1.list[34].wind.speed
         var day4wi=data1.list[34].weather[0].icon
 
         
-        fday4.textContent=day4
+        fday4.textContent=timeday4[1]+"/"+timeday44[0]+"/"+timeday4[0];
         fday4t.textContent="Temp: "+day4t+" F"
         fday4wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day4wi+"@2x.png")
         fday4h.textContent="Humidity: "+day4h+" %"
         fday4w.textContent="Wind speed: "+day4w+"mph"
-
                
     }) 
 }
@@ -529,30 +536,23 @@ function weather2() {
       } else {
         var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
       }
-         
-      console.log(reurl2)
- 
-   
-
 
     fetch(reurl2)
     .then(function (response0) {
       return response0.json();
     })
     .then(function (data0){
-        
-       
-            
+                   
         var humidity0=data0.main.humidity
         var temp0=data0.main.temp
         var name0=data0.name
         var icon0=data0.weather[0].icon
         var date00= new Date();
         
-
-        date0.textContent=(new Intl.DateTimeFormat('en-US').format(date00));
-        weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
+        date0.textContent=(new Intl.DateTimeFormat("en" , {
+        formatMatcher:"best fit", day:'2-digit', month:'2-digit', year:'numeric'}).format(date00));
         
+        weatherIcon0.setAttribute("src", "http://openweathermap.org/img/wn/"+icon0+"@2x.png")
         cityname.textContent=name0
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
