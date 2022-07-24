@@ -93,9 +93,14 @@ function renderweather(){
 
     var element0=document.getElementById("but0")
 
+    if ((lon0!==null)&&(lat0!==null)) {
+        lon0 = element0.getAttribute("data-lon");
+        lat0= element0.getAttribute("data-lat"); 
+    } else {
+        lon0=43.6534817;
+        lat0=-79.3839347
+    }
 
-    lon0 = element0.getAttribute("data-lon");
-    lat0= element0.getAttribute("data-lat");
 
     console.log(lon0)
     console.log(lat0)
@@ -439,12 +444,8 @@ function forecast52() {
 
 
 
-    if ((lat0!==null) && (lon0!==null)) {
         var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-    } else {
-        var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat=43.6534817&lon=-79.3839347&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-    }
-    
+
 
   
 
@@ -528,11 +529,9 @@ function forecast52() {
 function weather2() {
 
 
-    if ((lat0!==null) && (lon0!==null)) {
+  
          var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-    } else {
-        var reurl2="https://api.openweathermap.org/data/2.5/weather?lat=43.6534817&lon=-79.3839347&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-    }
+ 
    
 
 
