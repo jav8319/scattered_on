@@ -1,146 +1,33 @@
-
-body{
-    background-color: rgb(140, 140, 235);
+#header-custom{
+    background-color: rgb(64, 46, 80);
+    height: 80px;
+    color: aliceblue;
 }
 
-li{
-    background-color: rgb(140, 140, 235);
+#color-custom{
+    background-color: rgb(60, 118, 154);
 }
 
-ul{
-    background-color: rgb(140, 140, 235);
+
+#cityIcon{
+    background-color: rgb(87, 134, 84);
+}
+
+
+.list-group-item{
+    background-color: rgb(87, 134, 84);
+    color: aliceblue;
+}
+
+#custom-color2{
+    color: aliceblue;
+}
+
+#cityn{
+    color: aliceblue;  
 }
 
 .card{
-    background-color: rgb(140, 140, 235);
+    background-color: rgb(60, 118, 154);
 }
 
-.list-group-item{
-    background-color: rgb(140, 140, 235);
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.title0{
-    background-color: rgb(140, 235, 150);
-}
-
-
-    
-
-
-
-@media screen and (max-width: 1272px) {
-    img{
-      padding: 0;
-      width: 30%;
-    }
-}
-
-
-
-@media screen and (max-width: 966px) {
-    h2{
-      
-      font-size: 20px;
-    }
-}
-
-@media screen and (max-width: 966px) {
-   div{
-      
-     display: flex;
-     flex-wrap: wrap;
-     
-    }
-}
-
-@media screen and (max-width: 804px) {
-    li{
-       
-        font-size: 13px;
-        font-weight: lighter;
-      
-     }
-}
- 
-@media screen and (max-width: 826px) {
-    div{
-      
-      font-size: 19px;
-    }
-
-    .list-group-item{
-        font-size: 19px; 
-    }
-}
-
-
-@media screen and (max-width: 642px) {
-    h1{
-       
-        font-size: 22px;
-        
-      
-     }
-}
-
-
-@media screen and (max-width: 642px) {
-    div{
-       
-        padding: 0px;
-        margin: 0px;
-        
-      
-    }
-
-    li{
-       
-        padding: 0px;
-        margin: 0px;
-        
-      
-    }
-
-    ul{
-       
-        padding: 0px;
-        margin: 0px;
-        
-      
-     }
-}
-
-@media screen and (max-width: 514px) {
-    li{
-       
-        font-size: 11px;
-
-      
-     }
-
-     img{
-       
-        width: 22%;
-
-      
-     }
-
-
-
- }
-
-
- 
- 
-
-
-
-
-
-
-
-
-
- 
