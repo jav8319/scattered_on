@@ -47,13 +47,13 @@ function render() {
         var hlat=histlat[i]
     
         var li=document.createElement("li");
-        li.setAttribute("class","list-group-item");
+        li.setAttribute("class","py-1");
 
         var button=document.createElement('button');
         button.textContent=cityText;
         button.setAttribute("data-lat",hlat);
         button.setAttribute("data-lon",hlon);
-        button.setAttribute("class","container-fluid mx-0 px-0");
+        button.setAttribute("class","container-fluid mx-0 px-0 btn btn-info");
         button.setAttribute("id","but"+i);
       
         li.appendChild(button);
@@ -106,8 +106,7 @@ function storeHist0(){
 
     localStorage.setItem("cityhlon",JSON.stringify(histlon));
 
-    localStorage.setItem("cityhist",JSON.stringify(hist));
-    
+    localStorage.setItem("cityhist",JSON.stringify(hist));  
 }
 
 formS.addEventListener("submit", function (event) {
@@ -175,15 +174,13 @@ function getApi() {
             weather();
         }else{
             country0=[];
-            window.alert("incorret")
+            window.alert("Something went wrong, try again")
             return
         }
-
-             
+         
     });
     
     return;
-
 }
 
 function weather() {
@@ -210,12 +207,8 @@ function weather() {
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
 
-
-       forecast5();
-
-                  
-    })   
-    
+       forecast5();             
+    })      
 }
 
 function forecast5() {
@@ -303,22 +296,16 @@ function forecast5() {
         fday4h.textContent="Humidity: "+day4h+" %"
         fday4w.textContent="Wind speed: "+day4w+"mph"
 
-
         country0=[];
-
         
         storeHist0();
-        render();
-                
+        render();            
     }) 
-
 }
 
 function forecast51() {
 
     var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-
-  
 
     fetch(reurl3)
     .then(function (response1) {
@@ -399,16 +386,13 @@ function forecast51() {
         fday4t.textContent="Temp: "+day4t+" F"
         fday4wi.setAttribute("src", "http://openweathermap.org/img/wn/"+day4wi+"@2x.png")
         fday4h.textContent="Humidity: "+day4h+" %"
-        fday4w.textContent="Wind speed: "+day4w+"mph"
-                
+        fday4w.textContent="Wind speed: "+day4w+"mph"          
     }) 
-
 }
 
 function weather1() {
 
      var reurl2="https://api.openweathermap.org/data/2.5/weather?lat="+lat0+"&lon="+lon0+"&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
-
 
     fetch(reurl2)
     .then(function (response0) {
@@ -429,10 +413,8 @@ function weather1() {
         cityname.textContent=name0
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
-
-                 
-    }) 
-     
+           
+    })  
 }
 
 function forecast52() {
@@ -443,8 +425,6 @@ function forecast52() {
     }else{
         var reurl3="https://api.openweathermap.org/data/2.5/forecast?lat="+lat0+"&lon="+lon0+"&cnt=40&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
     }
-
-  
 
     fetch(reurl3)
     .then(function (response1) {
@@ -530,7 +510,6 @@ function forecast52() {
 
 function weather2() {
 
-
       if ((lon0==="undefined")&&(lat0==="undefined")) {
         var reurl2="https://api.openweathermap.org/data/2.5/weather?lat=43.6534817&lon=-79.3839347&units=imperial&appid=f9ec59044da63b2faaf8cef0a819eae9"
       } else {
@@ -556,7 +535,6 @@ function weather2() {
         cityname.textContent=name0
         cityTemp.textContent="Temp: "+temp0+" F"
         cityhumidity.textContent="Humidity: "+humidity0+" %"
-
     }) 
     
 }
