@@ -9,7 +9,7 @@
 
 ## Description  
 
-This web app looks for current weather conditions as well as 5-day forecst for the city input on the "search by city" field. Data is retrieve from a weather api by a fetch call to the server.  
+This web app looks for current weather conditions as well as 5-day forecast for the city input on the "search by city" field. Data is retrieved from a weather api by a fetch call to the server.  
 
 ## Usage  
 
